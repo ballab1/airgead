@@ -1,0 +1,636 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "id"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 64
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "amount"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 114
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "description"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 247
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT id, \"Date\", amount, account, description, category, category_type FROM quicken where category in ( $categories ) and category_type in ( $types ) ORDER BY $sort_by LIMIT 350",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "id",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "quicken"
+        }
+      ],
+      "title": "New panel",
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": [
+            "",
+            "1090:401K",
+            "1090:Espp Stock",
+            "1090:Excise",
+            "1090:FICA Tax",
+            "1090:Federal Tax",
+            "1090:GTL",
+            "1090:Income - Bonus",
+            "1090:Income - Deferred Compensation",
+            "1090:Income - Inspiration Award",
+            "1090:Income - Other",
+            "1090:Income - Pension",
+            "1090:Income - Refund",
+            "1090:Income - Retirement",
+            "1090:Income - Salary",
+            "1090:Income - Social Security",
+            "1090:Interest Expenses",
+            "1090:Interest Income",
+            "1090:Long Term Disability",
+            "1090:MA Paid Family Leave Ins",
+            "1090:MA Paid Medical Leave",
+            "1090:MNA Stipend",
+            "1090:Medical",
+            "1090:Medical - Dental",
+            "1090:Medical - EPO",
+            "1090:Medical - FSA",
+            "1090:Medical - HSA",
+            "1090:Medical - Vision",
+            "1090:Medicare",
+            "1090:Medicare surtax",
+            "1090:Other Expenses",
+            "1090:Restricted Stock",
+            "1090:Roth",
+            "1090:Short Term Disability",
+            "1090:State Tax",
+            "1090:Stock Rollover",
+            "1090:Working Spouse Contribution",
+            "1090:_DivInc",
+            "1090:_IntInc",
+            "1090:_RlzdGain",
+            "Auto",
+            "Auto:Auto Tax",
+            "Auto:Fuel",
+            "Auto:Insurance",
+            "Auto:Loan",
+            "Auto:Purchase",
+            "Auto:Service",
+            "Auto:Transport",
+            "Cell Phone",
+            "Charity",
+            "Clothing",
+            "Dining",
+            "Dues:Dues- MNA",
+            "Dues:Dues- Other",
+            "Education",
+            "Education:College Fees",
+            "Education:Colton",
+            "Education:Paxton",
+            "Education:School",
+            "Entertain",
+            "FIt Reim Off",
+            "Fees:Bank Chrg",
+            "Fees:Ccards - rebates",
+            "Fees:Credit Card Refund",
+            "Fees:Credit Charges",
+            "Fees:account fee",
+            "Fidelity",
+            "Furniture",
+            "Gardening",
+            "Gifts",
+            "Gifts:Baby Shower",
+            "Gifts:Xmas",
+            "Gits:Wedding",
+            "Groceries",
+            "Groceries:Beer,Wine,Etc.",
+            "Health & Beauty",
+            "Health & Beauty:Gym",
+            "Household",
+            "Household:Appliances",
+            "Household:Home Repair",
+            "Household:House Building Costs",
+            "Household:Insurance",
+            "Medical:Dental",
+            "Medical:OTC",
+            "Misc",
+            "Mortgage",
+            "Mortgage:Principal",
+            "Portfolio Srvcs. Fee Managed Acc",
+            "Postage",
+            "Profess.suppl.",
+            "Profess.suppl.:MNA Liability INsurance",
+            "Subscriptions",
+            "Tax (Other):Expenses",
+            "Tax (Other):Rebate",
+            "Telephone",
+            "Travel",
+            "Travel:2023,05 - Islay",
+            "Travel:2024,08 - UK",
+            "Travel:2024,10 - Oregon",
+            "Travel:2025,01 - Newport",
+            "Travel:2025,03 - Punta Cana",
+            "Travel:2025,05 - Nova Scotia",
+            "Travel:2025,07 - Barnstable",
+            "Travel:2025,08 - Scotland",
+            "Travel:2025,11 - Australia",
+            "Travel:2026,09 - Portugal",
+            "Travel:Holiday",
+            "Travel:Parking",
+            "Travel:Passport",
+            "Travel:Taxis",
+            "Utilities",
+            "Utilities:Electricity",
+            "Utilities:Gas",
+            "Utilities:Water",
+            "[0277 - Discover Savings]",
+            "[1185 - C1 Savings]",
+            "[1562 - Alight HMO (RAB)]",
+            "[1698 - Loft Mastercard]",
+            "[1796 - AA RAB (citi)]",
+            "[1961 - GAP Card]",
+            "[2023-06-26, Ally - XX0920]",
+            "[2023-12-23, Discover 8501]",
+            "[2024-01-06, Easton Bank CD]",
+            "[2024-03-17, C1- X9279]",
+            "[2024-06-01, Ally - XX0946]",
+            "[2024-08-17, Ally - XX1841]",
+            "[2024-11-06, Ally - XX7352]",
+            "[2025-02-09, C1 - X1046]",
+            "[2025-06-19, Disc - XX8988]",
+            "[2025-07-16, Bask - XX6436]",
+            "[2025-11-04, Easton Bank CD]",
+            "[2025-11-16, Bask - X8180]",
+            "[2025-12-21, Easton Bank CD]",
+            "[2026-02-16, Bask - X5958]",
+            "[2026-03-08, C1- X0147]",
+            "[2026-03-19, Easton Bank CD]",
+            "[2026-04-05, C1- X5024]",
+            "[2026-07-13, Bask - XX7367]",
+            "[2027-07-16, BMO - XX2892]",
+            "[2028-02-22, C1- X1272]",
+            "[2029-07-11, BMO - XX1509]",
+            "[2127 - Easton Bank Checking]",
+            "[2239 - AA RAB (citi)]",
+            "[3206 - AA JGB (citi)]",
+            "[3299 - Target]",
+            "[3333 - J Crew]",
+            "[3977 - Discover]",
+            "[40 Cooper Road]",
+            "[4634 - Ally Checking]",
+            "[4998 - Tufts PPO (RAB)]",
+            "[5195 - Banana Republic]",
+            "[5337 - Ally Savings]",
+            "[5780 - Macys amex]",
+            "[5930 - Tufts PPO (JGB)]",
+            "[7152 - Capital One (C1)]",
+            "[7475 - L.L.Bean]",
+            "[8000 - JGB JetBlue]",
+            "[8023 - Healthequity (JGB)]",
+            "[8192 - West Elm (C1)]",
+            "[8406 - AA JGB (citi)]",
+            "[9001 - Forbright Savings]",
+            "[9462 - Pottery Barn (C1)]",
+            "[Alison Ballantyne]",
+            "[Ally CD 3-Year XX0938]",
+            "[Andrew Ballantyne]",
+            "[C1- 1year CD (X5010)]",
+            "[C1- 360 Money Market]",
+            "[Citi (RAB) XX1855]",
+            "[Citi Savings - JGB]",
+            "[Colton College]",
+            "[JGB - Fidelity 401(k) 84832]",
+            "[JGB - Vanguard IRA XX0621]",
+            "[JGB - Vanguard IRA XX7352]",
+            "[JGB - Vanguard IRA XX8830]",
+            "[MassMutual - JGB XX7403]",
+            "[MassMutual - RAB XX7401]",
+            "[MassMutual - RAB XX7402]",
+            "[Paxton College]",
+            "[RAB - Ally IRA XX4314]",
+            "[RAB - Fidelity 401(k) 09037]",
+            "[RAB - Fidelity INDIVIDUAL - TOD XX4009]",
+            "[RAB - UBS Investment XX5716]",
+            "[RAB - Vanguard IRA XX4491]",
+            "[RAB - Vanguard IRA XX7650]",
+            "[RAB - Vanguard IRA XX9100]",
+            "[Vanguard Brokerage XX7940]"
+          ],
+          "value": [
+            "",
+            "1090:401K",
+            "1090:Espp Stock",
+            "1090:Excise",
+            "1090:FICA Tax",
+            "1090:Federal Tax",
+            "1090:GTL",
+            "1090:Income - Bonus",
+            "1090:Income - Deferred Compensation",
+            "1090:Income - Inspiration Award",
+            "1090:Income - Other",
+            "1090:Income - Pension",
+            "1090:Income - Refund",
+            "1090:Income - Retirement",
+            "1090:Income - Salary",
+            "1090:Income - Social Security",
+            "1090:Interest Expenses",
+            "1090:Interest Income",
+            "1090:Long Term Disability",
+            "1090:MA Paid Family Leave Ins",
+            "1090:MA Paid Medical Leave",
+            "1090:MNA Stipend",
+            "1090:Medical",
+            "1090:Medical - Dental",
+            "1090:Medical - EPO",
+            "1090:Medical - FSA",
+            "1090:Medical - HSA",
+            "1090:Medical - Vision",
+            "1090:Medicare",
+            "1090:Medicare surtax",
+            "1090:Other Expenses",
+            "1090:Restricted Stock",
+            "1090:Roth",
+            "1090:Short Term Disability",
+            "1090:State Tax",
+            "1090:Stock Rollover",
+            "1090:Working Spouse Contribution",
+            "1090:_DivInc",
+            "1090:_IntInc",
+            "1090:_RlzdGain",
+            "Auto",
+            "Auto:Auto Tax",
+            "Auto:Fuel",
+            "Auto:Insurance",
+            "Auto:Loan",
+            "Auto:Purchase",
+            "Auto:Service",
+            "Auto:Transport",
+            "Cell Phone",
+            "Charity",
+            "Clothing",
+            "Dining",
+            "Dues:Dues- MNA",
+            "Dues:Dues- Other",
+            "Education",
+            "Education:College Fees",
+            "Education:Colton",
+            "Education:Paxton",
+            "Education:School",
+            "Entertain",
+            "FIt Reim Off",
+            "Fees:Bank Chrg",
+            "Fees:Ccards - rebates",
+            "Fees:Credit Card Refund",
+            "Fees:Credit Charges",
+            "Fees:account fee",
+            "Fidelity",
+            "Furniture",
+            "Gardening",
+            "Gifts",
+            "Gifts:Baby Shower",
+            "Gifts:Xmas",
+            "Gits:Wedding",
+            "Groceries",
+            "Groceries:Beer,Wine,Etc.",
+            "Health & Beauty",
+            "Health & Beauty:Gym",
+            "Household",
+            "Household:Appliances",
+            "Household:Home Repair",
+            "Household:House Building Costs",
+            "Household:Insurance",
+            "Medical:Dental",
+            "Medical:OTC",
+            "Misc",
+            "Mortgage",
+            "Mortgage:Principal",
+            "Portfolio Srvcs. Fee Managed Acc",
+            "Postage",
+            "Profess.suppl.",
+            "Profess.suppl.:MNA Liability INsurance",
+            "Subscriptions",
+            "Tax (Other):Expenses",
+            "Tax (Other):Rebate",
+            "Telephone",
+            "Travel",
+            "Travel:2023,05 - Islay",
+            "Travel:2024,08 - UK",
+            "Travel:2024,10 - Oregon",
+            "Travel:2025,01 - Newport",
+            "Travel:2025,03 - Punta Cana",
+            "Travel:2025,05 - Nova Scotia",
+            "Travel:2025,07 - Barnstable",
+            "Travel:2025,08 - Scotland",
+            "Travel:2025,11 - Australia",
+            "Travel:2026,09 - Portugal",
+            "Travel:Holiday",
+            "Travel:Parking",
+            "Travel:Passport",
+            "Travel:Taxis",
+            "Utilities",
+            "Utilities:Electricity",
+            "Utilities:Gas",
+            "Utilities:Water",
+            "[0277 - Discover Savings]",
+            "[1185 - C1 Savings]",
+            "[1562 - Alight HMO (RAB)]",
+            "[1698 - Loft Mastercard]",
+            "[1796 - AA RAB (citi)]",
+            "[1961 - GAP Card]",
+            "[2023-06-26, Ally - XX0920]",
+            "[2023-12-23, Discover 8501]",
+            "[2024-01-06, Easton Bank CD]",
+            "[2024-03-17, C1- X9279]",
+            "[2024-06-01, Ally - XX0946]",
+            "[2024-08-17, Ally - XX1841]",
+            "[2024-11-06, Ally - XX7352]",
+            "[2025-02-09, C1 - X1046]",
+            "[2025-06-19, Disc - XX8988]",
+            "[2025-07-16, Bask - XX6436]",
+            "[2025-11-04, Easton Bank CD]",
+            "[2025-11-16, Bask - X8180]",
+            "[2025-12-21, Easton Bank CD]",
+            "[2026-02-16, Bask - X5958]",
+            "[2026-03-08, C1- X0147]",
+            "[2026-03-19, Easton Bank CD]",
+            "[2026-04-05, C1- X5024]",
+            "[2026-07-13, Bask - XX7367]",
+            "[2027-07-16, BMO - XX2892]",
+            "[2028-02-22, C1- X1272]",
+            "[2029-07-11, BMO - XX1509]",
+            "[2127 - Easton Bank Checking]",
+            "[2239 - AA RAB (citi)]",
+            "[3206 - AA JGB (citi)]",
+            "[3299 - Target]",
+            "[3333 - J Crew]",
+            "[3977 - Discover]",
+            "[40 Cooper Road]",
+            "[4634 - Ally Checking]",
+            "[4998 - Tufts PPO (RAB)]",
+            "[5195 - Banana Republic]",
+            "[5337 - Ally Savings]",
+            "[5780 - Macys amex]",
+            "[5930 - Tufts PPO (JGB)]",
+            "[7152 - Capital One (C1)]",
+            "[7475 - L.L.Bean]",
+            "[8000 - JGB JetBlue]",
+            "[8023 - Healthequity (JGB)]",
+            "[8192 - West Elm (C1)]",
+            "[8406 - AA JGB (citi)]",
+            "[9001 - Forbright Savings]",
+            "[9462 - Pottery Barn (C1)]",
+            "[Alison Ballantyne]",
+            "[Ally CD 3-Year XX0938]",
+            "[Andrew Ballantyne]",
+            "[C1- 1year CD (X5010)]",
+            "[C1- 360 Money Market]",
+            "[Citi (RAB) XX1855]",
+            "[Citi Savings - JGB]",
+            "[Colton College]",
+            "[JGB - Fidelity 401(k) 84832]",
+            "[JGB - Vanguard IRA XX0621]",
+            "[JGB - Vanguard IRA XX7352]",
+            "[JGB - Vanguard IRA XX8830]",
+            "[MassMutual - JGB XX7403]",
+            "[MassMutual - RAB XX7401]",
+            "[MassMutual - RAB XX7402]",
+            "[Paxton College]",
+            "[RAB - Ally IRA XX4314]",
+            "[RAB - Fidelity 401(k) 09037]",
+            "[RAB - Fidelity INDIVIDUAL - TOD XX4009]",
+            "[RAB - UBS Investment XX5716]",
+            "[RAB - Vanguard IRA XX4491]",
+            "[RAB - Vanguard IRA XX7650]",
+            "[RAB - Vanguard IRA XX9100]",
+            "[Vanguard Brokerage XX7940]"
+          ]
+        },
+        "definition": "select distinct category from quicken where category_type in ( $types )",
+        "label": "categories",
+        "multi": true,
+        "name": "categories",
+        "options": [],
+        "query": "select distinct category from quicken where category_type in ( $types )",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": [
+            "",
+            "Expense",
+            "Income",
+            "Tax",
+            "Xfer"
+          ],
+          "value": [
+            "",
+            "Expense",
+            "Income",
+            "Tax",
+            "Xfer"
+          ]
+        },
+        "definition": "select distinct category_type from quicken",
+        "label": "types",
+        "multi": true,
+        "name": "types",
+        "options": [],
+        "query": "select distinct category_type from quicken",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "id",
+          "value": "id"
+        },
+        "label": "sort_by",
+        "name": "sort_by",
+        "options": [
+          {
+            "selected": true,
+            "text": "id",
+            "value": "id"
+          },
+          {
+            "selected": false,
+            "text": "\"Date\"",
+            "value": "\"Date\""
+          },
+          {
+            "selected": false,
+            "text": "amount",
+            "value": "amount"
+          },
+          {
+            "selected": false,
+            "text": "account",
+            "value": "account"
+          },
+          {
+            "selected": false,
+            "text": "description",
+            "value": "description"
+          },
+          {
+            "selected": false,
+            "text": "category",
+            "value": "category"
+          },
+          {
+            "selected": false,
+            "text": "category_type",
+            "value": "category_type"
+          }
+        ],
+        "query": "id, \"Date\", amount, account, description, category, category_type",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Transactions",
+  "uid": "2b5ae287-acc2-4fd5-9b6d-5c6137b347d9"
+}

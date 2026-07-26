@@ -1,0 +1,151 @@
+-----------------------------------------------------------------------------------------------------------
+- see https://learn.microsoft.com/en-us/powerquery-m/
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    date_time = Json.Document(File.Contents(file))[date_time],
+    ResultTable = Table.FromRecords({
+        [Date = date_time]
+    })
+in
+    ResultTable
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[IRA Investments],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[IRA],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[Brokerage],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[Savings],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[Checking],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[CD Info],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[Credit Cards],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------
+
+let
+    file = "C:\Downloads\money\money.json",
+
+    CategoryTable = (categoryData as record) as table =>
+        let
+            TransposedTable = Table.Transpose(Record.ToTable(categoryData)),
+            PromotedHeaders = Table.PromoteHeaders(TransposedTable, [PromoteAllScalars=true])
+        in
+            PromotedHeaders,
+
+    Source = Json.Document(File.Contents(file))[Debit Cards],
+    Data = Table.Combine(List.Transform(Source, each CategoryTable(_)))
+in
+    Data
+
+-----------------------------------------------------------------------------------------------------------

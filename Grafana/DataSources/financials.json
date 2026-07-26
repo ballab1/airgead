@@ -1,0 +1,24 @@
+{
+  "uid": "edsvb0d0eu7lsa",
+  "orgId": 1,
+  "name": "financials",
+  "type": "grafana-postgresql-datasource",
+  "typeName": "PostgreSQL",
+  "typeLogoUrl": "public/plugins/grafana-postgresql-datasource/img/postgresql_logo.svg",
+  "access": "proxy",
+  "url": "postgres.postgres.svc.cluster.local:5432",
+  "user": "grafana",
+  "database": "",
+  "basicAuth": false,
+  "isDefault": true,
+  "jsonData": {
+    "connMaxLifetime": 14400,
+    "database": "money",
+    "maxIdleConns": 100,
+    "maxIdleConnsAuto": true,
+    "maxOpenConns": 100,
+    "postgresVersion": 1500,
+    "sslmode": "disable"
+  },
+  "readOnly": false
+}

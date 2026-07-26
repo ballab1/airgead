@@ -1,0 +1,16 @@
+{
+  "uid": "bdsun7ulirpj4a",
+  "orgId": 1,
+  "name": "loki",
+  "type": "loki",
+  "typeName": "Loki",
+  "typeLogoUrl": "public/plugins/loki/img/loki_icon.svg",
+  "access": "proxy",
+  "url": "http://loki.observability.svc.cluster.local:3100",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "isDefault": false,
+  "jsonData": {},
+  "readOnly": false
+}
