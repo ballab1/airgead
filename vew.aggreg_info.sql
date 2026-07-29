@@ -6,15 +6,12 @@ WITH
             , (payload->>'Subtype') AS subtype
             , payload
          FROM history WHERE payload->>'Subtype' NOT IN ('Charity', 'Health'))
-,aa AS (SELECT DATE((date_time::text)::timestamp with time zone) as datetime
-            , ((payload->>'Value')::money)::numeric AS value
-         FROM history WHERE payload->>'Subtype' = 'Charity')
 ,b AS (SELECT datetime, SUM(value) AS net_worth
-         FROM a WHERE acct_type != 'Index' GROUP BY datetime)
+         FROM a WHERE acct_type NOT IN  ('Property', 'Index') AND subtype != 'Stock' GROUP BY datetime)
 ,c AS (SELECT *, LAG(net_worth, 1) OVER (ORDER BY b.datetime) AS last FROM b)
 ,d AS (SELECT datetime, (net_worth - last) weekly_change FROM c)
 ,e AS (SELECT datetime, SUM(value) AS cash_assets
-         FROM a WHERE acct_type IN ('Cash Assets', 'Cards') AND subtype != 'Stock' GROUP BY datetime)
+         FROM a WHERE acct_type IN ('Cash Assets', 'Cards') AND subtype NOT IN ('Stock', 'UK') GROUP BY datetime)
 ,f AS (SELECT datetime, SUM(value) AS managed_funds
          FROM a WHERE acct_type = 'Managed Funds' GROUP BY datetime)
 ,g AS (SELECT datetime, SUM(value) AS checking
@@ -26,7 +23,7 @@ WITH
 ,j AS (SELECT datetime, SUM(value) AS savings
          FROM a WHERE acct_type = 'Cash Assets' AND subtype = 'Savings' GROUP BY datetime)
 ,k AS (SELECT datetime, SUM(value) AS cds
-         FROM a WHERE payload->>'Maturity' IS NOT NULL GROUP BY datetime)
+         FROM a WHERE acct_type = 'Cash Assets' AND subtype = 'CD' GROUP BY datetime)
 ,l AS (SELECT datetime, SUM(value) AS uk_assets
          FROM a WHERE acct_type = 'Cash Assets' AND subtype = 'UK' GROUP BY datetime)
 ,m AS (SELECT datetime, SUM(value) AS annuities
@@ -43,8 +40,6 @@ WITH
          FROM a WHERE acct_type = 'Cards' AND subtype = 'Credit' GROUP BY datetime)
 ,s AS (SELECT datetime, SUM(value) AS property
          FROM a WHERE acct_type = 'Property' GROUP BY datetime)
-,t AS (SELECT datetime, SUM(value) AS charitable_fund
-         FROM aa GROUP BY datetime)
 ,u AS (SELECT datetime, SUM(value) AS snp
          FROM a WHERE acct_type = 'Index' and name = 'S&P' GROUP BY datetime)
 ,v AS (SELECT datetime, SUM(value) AS nasdaq
@@ -55,6 +50,11 @@ WITH
          FROM a
         WHERE name ~ '^Investor:'
         GROUP BY datetime)
+,aa AS (SELECT DATE((date_time::text)::timestamp with time zone) as datetime
+            , ((payload->>'Value')::money)::numeric AS value
+         FROM history WHERE payload->>'Subtype' = 'Charity')
+,t AS (SELECT datetime, SUM(value) AS charitable_fund
+         FROM aa GROUP BY datetime)
 ,y AS (SELECT * FROM b
          LEFT JOIN d USING (datetime)
          LEFT JOIN e USING (datetime)

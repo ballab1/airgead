@@ -1,5 +1,5 @@
 
-local data = import "../Dashboards/jenkins/Jenkins overview.json";
+local data = import "../Dashboards/bobb/Tax Spending.json";
 
 local cfgmap(data) = {
   apiVersion: 'v1',
@@ -9,14 +9,14 @@ local cfgmap(data) = {
       "grafana_dashboard": "1",
     },
     annotations: {
-      "dashboard_folder": "jenkins",
+      "dashboard_folder": "bobb",
     },
 
-    name: "grafana--dashboard-aj5--idr-ik",
+    name: "grafana--dashboard-bokf7xp",
     namespace: 'grafana-ge-stg',
   },
   data: {
-    "jenkins-overview.json": data,
+    "tax-spending.json": data,
   },
 
 };

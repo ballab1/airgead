@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -28,8 +28,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 5,
-      "panels": [],
+      "id": 14,
       "title": "Ballantyne Finances",
       "type": "row"
     },
@@ -45,7 +44,6 @@
             "mode": "fixed"
           },
           "displayName": "Net Worth",
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -60,8 +58,7 @@
             ]
           },
           "unit": "currencyUSD"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -87,9 +84,13 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
@@ -129,7 +130,6 @@
             "mode": "fixed"
           },
           "displayName": "Cash Assets",
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -144,8 +144,7 @@
             ]
           },
           "unit": "currencyUSD"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
         "h": 4,
@@ -171,13 +170,17 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT cash_assets + stock FROM aggreg_info LIMIT 300",
+          "rawSql": "SELECT cash_assets FROM aggreg_info LIMIT 300",
           "refId": "A",
           "sql": {
             "columns": [
@@ -198,13 +201,13 @@
           }
         }
       ],
-      "title": "Stock & Cash Assets",
+      "title": "US Cash Assets",
       "type": "stat"
     },
     {
       "gridPos": {
         "h": 4,
-        "w": 4,
+        "w": 12,
         "x": 8,
         "y": 1
       },
@@ -218,9 +221,88 @@
         "content": "##### ${next_cd}",
         "mode": "markdown"
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
+      "targets": [],
       "title": "Next CD to mature",
       "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": false
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT info, value FROM summary WHERE id not in (0,15,16,17,18,19) ORDER BY id LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Wealth Summary",
+      "transparent": true,
+      "type": "table"
     },
     {
       "datasource": {
@@ -236,7 +318,7 @@
             "axisBorderShow": true,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisGridShow": false,
+            "axisGridShow": true,
             "axisLabel": "Value",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -267,7 +349,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -280,21 +361,6 @@
           "unit": "currencyUSD"
         },
         "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CD's"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
           {
             "matcher": {
               "id": "byName",
@@ -319,7 +385,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "yellow",
+                  "fixedColor": "green",
                   "mode": "fixed"
                 }
               }
@@ -328,13 +394,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Property"
+              "options": "UK assets"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-green",
+                  "fixedColor": "purple",
                   "mode": "fixed"
                 }
               }
@@ -343,13 +409,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Dell Stock"
+              "options": "US Cash Assets"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "semi-dark-orange",
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -358,18 +424,24 @@
         ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 12,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 5
       },
       "id": 7,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -382,7 +454,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -394,6 +466,23 @@
           "rawQuery": true,
           "rawSql": "SELECT datetime as \"time\", managed_funds AS \"Managed Funds\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "history"
         },
         {
@@ -404,7 +493,7 @@
           "editorMode": "code",
           "format": "time_series",
           "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", cash_assets as \"Cash Assets\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
+          "rawSql": "SELECT datetime as \"time\", cash_assets as \"US Cash Assets\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "A",
           "sql": {
             "columns": [
@@ -426,44 +515,15 @@
           "table": "history"
         },
         {
+          "dataset": "money",
           "datasource": {
             "type": "grafana-postgresql-datasource",
             "uid": "edsvb0d0eu7lsa"
           },
           "editorMode": "code",
           "format": "table",
-          "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", stock as \"Dell Stock\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
-          "refId": "D",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        },
-        {
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "edsvb0d0eu7lsa"
-          },
-          "editorMode": "code",
-          "format": "time_series",
-          "hide": false,
-          "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", property as \"Property\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
+          "rawSql": "SELECT datetime as \"time\", uk_assets AS \"UK assets\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "C",
           "sql": {
             "columns": [
@@ -481,115 +541,10 @@
               }
             ],
             "limit": 50
-          },
-          "table": "history"
+          }
         }
       ],
       "title": "Wealth",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-postgresql-datasource",
-        "uid": "edsvb0d0eu7lsa"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "red",
-            "mode": "shades"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisGridShow": true,
-            "axisLabel": "Value",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 39,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 2,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "showValues": false,
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "normal"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "currencyUSD"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 5
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "timezone": [
-          "browser"
-        ],
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.3.0-18392635519",
-      "targets": [
-        {
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "edsvb0d0eu7lsa"
-          },
-          "editorMode": "code",
-          "format": "time_series",
-          "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", credit_card_debt AS \"Credit Card Debt\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
-          "refId": "A",
-          "table": "history"
-        }
-      ],
-      "title": "Credit Card Debt",
       "transparent": true,
       "type": "timeseries"
     },
@@ -638,7 +593,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -672,15 +626,21 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 17
       },
       "id": 2,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -693,7 +653,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -810,7 +770,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -832,7 +791,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "purple",
+                  "fixedColor": "dark-green",
                   "mode": "fixed"
                 }
               }
@@ -847,7 +806,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "semi-dark-blue",
+                  "fixedColor": "purple",
                   "mode": "fixed"
                 }
               }
@@ -877,7 +836,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
+                  "fixedColor": "super-light-green",
                   "mode": "fixed"
                 }
               }
@@ -889,15 +848,21 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 17
       },
       "id": 1,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -910,7 +875,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -971,38 +936,9 @@
           "rawSql": "SELECT datetime as \"time\", cds AS \"CD's\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "E",
           "table": "history"
-        },
-        {
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "edsvb0d0eu7lsa"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "hide": false,
-          "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", uk_assets AS \"UK assets\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
-          "refId": "G",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
         }
       ],
-      "title": "Cash Assets",
+      "title": "US Cash Assets",
       "transparent": true,
       "type": "timeseries"
     },
@@ -1014,19 +950,44 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "red",
+            "mode": "shades"
           },
           "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
             },
-            "footer": {
-              "reducers": []
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
             },
-            "inspect": false
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1035,22 +996,42 @@
                 "value": 0
               }
             ]
-          }
-        },
-        "overrides": []
+          },
+          "unit": "currencyUSD"
+        }
       },
       "gridPos": {
-        "h": 17,
-        "w": 12,
+        "h": 8,
+        "w": 6,
         "x": 0,
-        "y": 22
+        "y": 27
       },
-      "id": 4,
+      "id": 3,
       "options": {
-        "cellHeight": "sm",
-        "showHeader": false
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -1058,33 +1039,16 @@
             "uid": "edsvb0d0eu7lsa"
           },
           "editorMode": "code",
-          "format": "table",
+          "format": "time_series",
           "rawQuery": true,
-          "rawSql": "SELECT info, value FROM summary WHERE id not in (0,15,16,17,18,19) ORDER BY id LIMIT 300",
+          "rawSql": "SELECT datetime as \"time\", credit_card_debt AS \"Credit Card Debt\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
           "table": "history"
         }
       ],
-      "title": "Wealth Summary",
+      "title": "Credit Card Debt",
       "transparent": true,
-      "type": "table"
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1132,7 +1096,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1188,18 +1151,24 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 22
+        "w": 6,
+        "x": 6,
+        "y": 27
       },
       "id": 6,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull",
             "mean"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1212,7 +1181,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -1229,6 +1198,196 @@
       ],
       "title": "Changes in Net Worth",
       "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic",
+            "seriesBy": "max"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.9,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dell Stock"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Property"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 27
+      },
+      "id": 13,
+      "maxDataPoints": 1534,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.0",
+      "targets": [
+        {
+          "dataset": "money",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", stock as \"Dell Stock\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "money",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", property as \"Property\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Generational Wealth",
       "type": "timeseries"
     },
     {
@@ -1278,7 +1437,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1334,18 +1492,24 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 30
+        "w": 6,
+        "x": 18,
+        "y": 27
       },
       "id": 11,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull",
             "mean"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1358,7 +1522,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -1400,10 +1564,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 35
       },
-      "id": 13,
-      "panels": [],
+      "id": 15,
       "title": "Market",
       "type": "row"
     },
@@ -1412,7 +1575,6 @@
         "type": "grafana-postgresql-datasource",
         "uid": "edsvb0d0eu7lsa"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1454,7 +1616,6 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1578,15 +1739,21 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 36
       },
       "id": 12,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [
             "lastNotNull"
           ],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1599,7 +1766,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.3.0-18392635519",
+      "pluginVersion": "13.1.0",
       "targets": [
         {
           "datasource": {
@@ -1637,7 +1804,6 @@
           },
           "editorMode": "code",
           "format": "time_series",
-          "hide": false,
           "rawQuery": true,
           "rawSql": "WITH B AS (\r\n  SELECT datetime, snp,\r\n         FIRST_VALUE(snp) OVER (ORDER BY datetime) AS base\r\n  FROM aggreg_info\r\n  WHERE $__timeFilter(datetime)\r\n)\r\nSELECT datetime AS \"time\",\r\n       (snp / base) * 100 AS \"S&P 500\"\r\nFROM B\r\nORDER BY datetime\r\nLIMIT 300",
           "refId": "B",
@@ -1667,7 +1833,6 @@
           },
           "editorMode": "code",
           "format": "time_series",
-          "hide": false,
           "rawQuery": true,
           "rawSql": "WITH C AS (\r\n  SELECT datetime, dji,\r\n         FIRST_VALUE(dji) OVER (ORDER BY datetime) AS base\r\n  FROM aggreg_info\r\n  WHERE $__timeFilter(datetime)\r\n)\r\nSELECT datetime AS \"time\",\r\n       (dji / base) * 100 AS \"Dow Jones Industrial\"\r\nFROM C\r\nORDER BY datetime\r\nLIMIT 300",
           "refId": "C",
@@ -1697,7 +1862,6 @@
           },
           "editorMode": "code",
           "format": "time_series",
-          "hide": false,
           "rawQuery": true,
           "rawSql": "WITH D AS (\r\n  SELECT datetime, barnum_fg,\r\n         FIRST_VALUE(barnum_fg) OVER (ORDER BY datetime) AS base\r\n  FROM aggreg_info\r\n  WHERE $__timeFilter(datetime)\r\n)\r\nSELECT datetime AS \"time\",\r\n       (barnum_fg / base) * 100 AS \"Barnum Holdings\"\r\nFROM D\r\nORDER BY datetime\r\nLIMIT 300",
           "refId": "D",
@@ -1727,7 +1891,6 @@
           },
           "editorMode": "code",
           "format": "time_series",
-          "hide": false,
           "rawQuery": true,
           "rawSql": "WITH E AS (\r\n  SELECT datetime, net_worth,\r\n         FIRST_VALUE(net_worth) OVER (ORDER BY datetime) AS base\r\n  FROM aggreg_info\r\n  WHERE $__timeFilter(datetime)\r\n)\r\nSELECT datetime AS \"time\",\r\n       (net_worth / base) * 100 AS \"Net Worth\"\r\nFROM E\r\nORDER BY datetime\r\nLIMIT 300",
           "refId": "E",
@@ -1755,9 +1918,9 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 42,
-  "tags": [],
   "templating": {
     "list": [
       {
@@ -1768,6 +1931,9 @@
             "$__all"
           ]
         },
+        "datasource": {
+          "type": "grafana-postgresql-datasource"
+        },
         "definition": "SELECT value || ': ' || substring(info FROM 22) AS info FROM summary WHERE id = 1 ORDER BY id LIMIT 1",
         "hide": 2,
         "includeAll": true,
@@ -1777,19 +1943,33 @@
         "query": "SELECT value || ': ' || substring(info FROM 22) AS info FROM summary WHERE id = 1 ORDER BY id LIMIT 1",
         "refresh": 1,
         "regex": "",
+        "regexApplyTo": "value",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-1y",
+    "from": "now-6M",
     "to": "now"
   },
   "timepicker": {
-    "nowDelay": "1d"
+    "nowDelay": "1d",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
   "timezone": "browser",
   "title": "Financial Summary",
-  "uid": "edt1cyp6hvn5se",
-  "weekStart": ""
+  "uid": "edt1cyp6hvn5se"
 }
