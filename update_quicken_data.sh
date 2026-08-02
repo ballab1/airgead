@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=~/20260630.quicken.csv
+FILE=~/20260731.quicken.csv
 
 KUBECTL='/snap/bin/kubectl'
 POD="$("$KUBECTL" get pods -n postgres -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')"

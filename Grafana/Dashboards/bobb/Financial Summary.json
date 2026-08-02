@@ -28,7 +28,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 14,
+      "id": 16,
       "title": "Ballantyne Finances",
       "type": "row"
     },
@@ -84,7 +84,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -170,7 +170,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -180,7 +180,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT cash_assets FROM aggreg_info LIMIT 300",
+          "rawSql": "SELECT cash_assets + credit_card_debt FROM aggreg_info LIMIT 300",
           "refId": "A",
           "sql": {
             "columns": [
@@ -201,13 +201,13 @@
           }
         }
       ],
-      "title": "US Cash Assets",
+      "title": "US Cash",
       "type": "stat"
     },
     {
       "gridPos": {
         "h": 4,
-        "w": 12,
+        "w": 5,
         "x": 8,
         "y": 1
       },
@@ -221,10 +221,182 @@
         "content": "##### ${next_cd}",
         "mode": "markdown"
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [],
       "title": "Next CD to mature",
       "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "displayName": "Cash Assets",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 13,
+        "y": 1
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "same_as_value",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Cash Assets$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT generational_wealth FROM aggreg_info LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Generational Wealth",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "fixed"
+          },
+          "displayName": "Cash Assets",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 17,
+        "y": 1
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "same_as_value",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Cash Assets$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT charitable_fund FROM aggreg_info LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Donor Advised Fund",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -258,7 +430,7 @@
         }
       },
       "gridPos": {
-        "h": 12,
+        "h": 13,
         "w": 12,
         "x": 0,
         "y": 5
@@ -268,7 +440,7 @@
         "cellHeight": "sm",
         "showHeader": false
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -424,7 +596,7 @@
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 13,
         "w": 12,
         "x": 12,
         "y": 5
@@ -454,7 +626,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -544,7 +716,7 @@
           }
         }
       ],
-      "title": "Wealth",
+      "title": "Net Worth",
       "transparent": true,
       "type": "timeseries"
     },
@@ -626,7 +798,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 2,
       "options": {
@@ -653,7 +825,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -848,7 +1020,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 18
       },
       "id": 1,
       "options": {
@@ -875,7 +1047,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -1004,7 +1176,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 3,
       "options": {
@@ -1031,7 +1203,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -1043,6 +1215,23 @@
           "rawQuery": true,
           "rawSql": "SELECT datetime as \"time\", credit_card_debt AS \"Credit Card Debt\" FROM aggreg_info WHERE $__timeFilter(datetime) ORDER BY datetime LIMIT 300",
           "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
           "table": "history"
         }
       ],
@@ -1153,7 +1342,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 27
+        "y": 28
       },
       "id": 6,
       "options": {
@@ -1181,7 +1370,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -1301,7 +1490,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 27
+        "y": 28
       },
       "id": 13,
       "maxDataPoints": 1534,
@@ -1326,7 +1515,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "dataset": "money",
@@ -1463,30 +1652,6 @@
                 }
               }
             ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "Donor Fund"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": true,
-                  "viz": true
-                }
-              }
-            ]
           }
         ]
       },
@@ -1494,7 +1659,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 27
+        "y": 28
       },
       "id": 11,
       "options": {
@@ -1522,7 +1687,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -1564,9 +1729,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 36
       },
-      "id": 15,
+      "id": 17,
       "title": "Market",
       "type": "row"
     },
@@ -1739,7 +1904,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 37
       },
       "id": 12,
       "options": {
@@ -1766,7 +1931,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "13.1.0",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {

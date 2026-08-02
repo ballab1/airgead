@@ -50,12 +50,14 @@ WITH
          FROM a
         WHERE name ~ '^Investor:'
         GROUP BY datetime)
+,y AS (SELECT datetime, SUM(value) AS generational_wealth
+         FROM a WHERE acct_type = 'Property' OR subtype = 'Stock' GROUP BY datetime)
 ,aa AS (SELECT DATE((date_time::text)::timestamp with time zone) as datetime
             , ((payload->>'Value')::money)::numeric AS value
          FROM history WHERE payload->>'Subtype' = 'Charity')
 ,t AS (SELECT datetime, SUM(value) AS charitable_fund
          FROM aa GROUP BY datetime)
-,y AS (SELECT * FROM b
+,zz AS (SELECT * FROM b
          LEFT JOIN d USING (datetime)
          LEFT JOIN e USING (datetime)
          LEFT JOIN f USING (datetime)
@@ -77,5 +79,6 @@ WITH
          LEFT JOIN v USING (datetime)
          LEFT JOIN w USING (datetime)
          LEFT JOIN x USING (datetime)
+         LEFT JOIN y USING (datetime)
       )
-SELECT * FROM y ORDER BY datetime;
+SELECT * FROM zz ORDER BY datetime;
