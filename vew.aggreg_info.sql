@@ -11,7 +11,7 @@ WITH
 ,c AS (SELECT *, LAG(net_worth, 1) OVER (ORDER BY b.datetime) AS last FROM b)
 ,d AS (SELECT datetime, (net_worth - last) weekly_change FROM c)
 ,e AS (SELECT datetime, SUM(value) AS cash_assets
-         FROM a WHERE acct_type IN ('Cash Assets', 'Cards') AND subtype NOT IN ('Stock', 'UK') GROUP BY datetime)
+         FROM a WHERE acct_type = 'Cash Assets' AND subtype IN ('Checking', 'Deferred Compensation', 'Brokerage', 'Savings', 'CD') GROUP BY datetime)
 ,f AS (SELECT datetime, SUM(value) AS managed_funds
          FROM a WHERE acct_type = 'Managed Funds' GROUP BY datetime)
 ,g AS (SELECT datetime, SUM(value) AS checking
