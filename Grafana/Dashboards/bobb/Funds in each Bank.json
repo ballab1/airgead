@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "links": [],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -55,6 +55,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -64,30 +65,35 @@
               "mode": "off"
             }
           },
-          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
           "unit": "currencyUSD"
-        },
-        "overrides": []
+        }
       },
       "gridPos": {
-        "h": 16,
-        "w": 24,
+        "h": 8,
+        "w": 9,
         "x": 0,
         "y": 0
       },
       "id": 1,
       "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
           "placement": "bottom",
           "showLegend": true
         },
@@ -100,7 +106,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "13.1.1",
       "targets": [
         {
           "datasource": {
@@ -110,7 +116,2776 @@
           "editorMode": "code",
           "format": "time_series",
           "rawQuery": true,
-          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Balance\" FROM acc_history\r\nWHERE bank in ( $Bank ) and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"CD - X0946\" FROM acc_history\r\nWHERE name = 'Ally: CD - X0946' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings - X5337\" FROM acc_history\r\nWHERE name = 'Ally: Savings - X5337' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Checking - X4634\" FROM acc_history\r\nWHERE name = 'Ally: Checking - X4634' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"24-08-17 (18mo) - X1841\" FROM acc_history\r\nWHERE name = 'Ally: 24-08-17 (18mo) - X1841' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"24-11-06 (5yr) - X7352\" FROM acc_history\r\nWHERE name = 'Ally: 24-11-06 (5yr) - X7352' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Ally Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 9,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"29-07-27 (5yr) - X1509\" FROM acc_history\r\nWHERE name = 'Bask: 25-07-16 (12mo) - X6436' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"25-11-19 (9mo) - X8180\" FROM acc_history\r\nWHERE name = 'Bask: 25-11-19 (9mo) - X8180' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-02-19 (12mo) - X5958\" FROM acc_history\r\nWHERE name = 'Bask: 26-02-19 (12mo) - X5958' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-12-28 (9mo) - X5685\" FROM acc_history\r\nWHERE name = 'Bask: 26-12-28 (9mo) - X5685' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-12-31 (9mo) - X5685\" FROM acc_history\r\nWHERE name ~ 'Bask: .* - X5685' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"27-07-28 (9mo) - X6562\" FROM acc_history\r\nWHERE name ~ 'Bask: 27-07.*' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Bask Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"29-07-27 (5yr) - X1509\" FROM acc_history\r\nWHERE name = 'BMO: 29-07-27 (5yr) - X1509' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"27-07-27 (3yr) - X2892\" FROM acc_history\r\nWHERE name = 'BMO: 27-07-27 (3yr) - X2892' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "BMO Alto Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"24-04-05 (2yr) - X5024\" FROM acc_history\r\nWHERE name = 'CapOne: 24-04-05 (2yr) - X5024' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"25-02-09 (12mo) - X1046\" FROM acc_history\r\nWHERE name = 'CapOne: 25-02-09 (12mo) - X1046' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"28-02-22 (5yr) - X1272\" FROM acc_history\r\nWHERE name = 'CapOne: 28-02-22 (5yr) - X1272' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Brokerage - X4596\" FROM acc_history\r\nWHERE name = 'CapOne: Brokerage - X4596' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"CD - X9279\" FROM acc_history\r\nWHERE name = 'CapOne: CD - X9279' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings - X45965\" FROM acc_history\r\nWHERE name = 'CapOne: Savings - X4596' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"CD - X9279\" FROM acc_history\r\nWHERE name = 'CapOne: CD - X9279' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "G",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings - X1185\" FROM acc_history\r\nWHERE name = 'CapOne: Savings - X1185' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "H",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings - X4596\" FROM acc_history\r\nWHERE name = 'CapOne: Savings - X4596' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "I",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Capital One",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 9,
+        "y": 8
+      },
+      "id": 5,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings RAB - X1855\" FROM acc_history\r\nWHERE name = 'Citi: Savings RAB - X1855' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings JGB - X6834\" FROM acc_history\r\nWHERE name = 'Citi: Savings JGB - X6834' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Citi Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 17,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"27-04-17 (1yr) - X5190\" FROM acc_history\r\nWHERE name = 'E*TRADE: 27-04-17 (1yr) - X5190' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
           "refId": "A",
           "sql": {
             "columns": [
@@ -199,45 +2974,2039 @@
           "table": "history"
         }
       ],
-      "title": "Funds in each Bank",
+      "title": "E*TRADE",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 16
+      },
+      "id": 7,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"24-04-05 (2yr) - X5024\" FROM acc_history\r\nWHERE name = 'Easton: 25-01-27 (9mo) - X8838' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"25-03-21 (6mo) - X7893\" FROM acc_history\r\nWHERE name = 'Easton: 25-03-21 (6mo) - X7893' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"25-11-04 (9mo) - X8838\" FROM acc_history\r\nWHERE name = 'Easton: 25-11-04 (9mo) - X8838' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"25-12-21 (6mo) - X7893\" FROM acc_history\r\nWHERE name = 'Easton: 25-12-21 (6mo) - X7893' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-03-19 (9mo) - X7006\" FROM acc_history\r\nWHERE name = 'Easton: 26-03-19 (9mo) - X7006' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-04-22 (9mo) - X8031\" FROM acc_history\r\nWHERE name = 'Easton: 26-04-22 (9mo) - X8031' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-07-23 (9mo) - X7893\" FROM acc_history\r\nWHERE name = 'Easton: 26-07-23 (9mo) - X7893' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "G",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-09-17 (9mo) - X7006\" FROM acc_history\r\nWHERE name = 'Easton: 26-09-17 (9mo) - X7006' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "H",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"26-11-23 (9mo) - X8031\" FROM acc_history\r\nWHERE name = 'Easton: 26-11-23 (9mo) - X8031' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "I",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"27-04-24 (9mo) - X7893\" FROM acc_history\r\nWHERE name = 'Easton: 27-04-24 (9mo) - X7893' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "J",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"CD - X7163\" FROM acc_history\r\nWHERE name = 'Easton: CD - X7163' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "K",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Checking - X2127\" FROM acc_history\r\nWHERE name = 'Easton: Checking - X2127' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "L",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"CD - X7163\" FROM acc_history\r\nWHERE name = 'Easton: CD - X7163' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "M",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Easton Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 9,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Savings - X9001\" FROM acc_history\r\nWHERE name = 'Forbright: Savings - X9001' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "Forbright Bank",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "edsvb0d0eu7lsa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Value",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 39,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 2,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 16
+      },
+      "id": 9,
+      "options": {
+        "annotations": {
+          "clustering": -1,
+          "multiLane": false
+        },
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "enableFacetedFilter": false,
+          "overflow": "ellipsis",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "13.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Instant Saver - X4724\" FROM acc_history\r\nWHERE name = 'Natwest: Instant Saver - X4724' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Gold Deposit - X90616\" FROM acc_history\r\nWHERE name = 'RBS: Gold Deposit - X9061' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Instant Saver - X4724\" FROM acc_history\r\nWHERE name = 'Natwest: Instant Saver - X4724' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "edsvb0d0eu7lsa"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT datetime as \"time\", SUM(value)::numeric as \"Byres Rd - X6866\" FROM acc_history\r\nWHERE name = 'RBS: Byres Rd - X6866' and $__timeFilter(datetime) GROUP BY datetime\r\nORDER BY datetime LIMIT 300",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "datetime",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "subtype",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "name": "SUM",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "datetime",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "subtype",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 250,
+            "orderBy": {
+              "property": {
+                "name": "datetime",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "aaba8889-0123-4456-b89a-b190f1549322",
+                  "properties": {
+                    "field": "acct_type",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Cash Assets"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "a8b9bb98-0123-4456-b89a-b190ec8a388d",
+              "type": "group"
+            },
+            "whereString": "acct_type = 'Cash Assets'"
+          },
+          "table": "history"
+        }
+      ],
+      "title": "UK Banks",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "preload": false,
   "refresh": "",
-  "schemaVersion": 41,
-  "tags": [],
-  "templating": {
-    "list": [
-      {
-        "allowCustomValue": false,
-        "current": {
-          "text": [
-            "Forbright"
-          ],
-          "value": [
-            "Forbright"
-          ]
-        },
-        "definition": "SELECT \"name\" from banks",
-        "label": "Bank",
-        "multi": true,
-        "name": "Bank",
-        "options": [],
-        "query": "SELECT \"name\" from banks",
-        "refresh": 1,
-        "regex": "",
-        "sort": 1,
-        "type": "query"
-      }
-    ]
-  },
+  "schemaVersion": 42,
   "time": {
     "from": "2023-10-14T08:11:09.000Z",
     "to": "2024-07-25T02:12:26.000Z"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
   "timezone": "browser",
   "title": "Funds in each Bank",
   "uid": "adtcxci3kg5j4c"
