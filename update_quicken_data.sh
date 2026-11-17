@@ -1,12 +1,28 @@
 #!/bin/bash
 
-FILE=~/20260731.quicken.csv
+# declarations of MUST HAVE globals
+POSTGRES_NAMESPACE='postgres'
+POSTGES_PVNAME='pv-hp-postgres'
 
-KUBECTL='/snap/bin/kubectl'
-POD="$("$KUBECTL" get pods -n postgres -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}')"
-"$KUBECTL" cp "$FILE" "postgres/${POD}:/tmp/transactions.csv"
-"$KUBECTL" exec -n postgres "${POD}" -- chmod 666 /tmp/transactions.csv
-"$KUBECTL" exec -n postgres "${POD}" -- psql -U bobb -h localhost -d money -c "truncate quicken_data"
-"$KUBECTL" exec -n postgres "${POD}" -- psql -U bobb -h localhost -d money -c "copy quicken_data from '/tmp/transactions.csv' header csv"
-"$KUBECTL" exec -n postgres "${POD}" -- rm /tmp/transactions.csv
+PROGRAM_DIR="$(readlink -f ~/GIT/k8s)"
+PROGRAM_NAME="$(basename "${BASH_SOURCE[0]}" | sed 's|.sh$||')"
+WORKSPACE='/home/bobb/workspace'
+LOGFILE="${WORKSPACE}/${PROGRAM_NAME}.log"
 
+cd "${WORKSPACE}" ||:
+mkdir -p current ||:
+source "${PROGRAM_DIR}/k8s.bashlib"
+{
+  declare -i status
+  (
+    k8s::__init
+    k8s::verify_quicken "$POSTGRES_NAMESPACE" "$POSTGES_PVNAME"
+
+  ) && status=$? || status=$? 2>&1
+  [ "$status" -eq 0 ] || echo "exit code ${status}"
+
+} 2>&1 | tee "${LOGFILE}"
+
+sed -E -e "${k8s_NO_ASCII}" "${LOGFILE}" > "${WORKSPACE}/current/${PROGRAM_NAME}.log"
+rm "${LOGFILE}"
+exit 0
